@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import SearchForm from './components/searchForm';
+import axios, { AxiosResponse } from 'axios';
+import { SearchForm, SearchMethod } from './components/SearchForm';
+import WeatherForm from './components/WeatherForm';
+import Axios from 'axios';
 
 const App = () => {
 
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState({});
   const [isWeatherActive, setIsWeatherActive] = useState(false);
-  const getWeather = async (/*userInput*/) => {
+  const getWeather = async (content: string, searchMethod: SearchMethod) => {
     if (isWeatherActive === false) {
       setIsWeatherActive(true);
     }
     try {
-      const response = await axios.get('http://localhost:5000/api/weather/location/44418');
+      let response: any = null;
+      switch (searchMethod) {
+        case SearchMethod.ZIPCODE: {
+          response = await axios.get('http://localhost:5000/api/weather/zipcode/' + content);
+          break;
+        }
+        case SearchMethod.Geographic: {
+         // const reg:RegExp = content.
+         // response = await axios.get('http://localhost:5000/api/weather/geographic_coordinates/' + content);
+          break;
+        }
+      }
       setWeather(response.data);
       console.log(response.data);
     } catch (error) {
@@ -23,19 +36,12 @@ const App = () => {
     if (isWeatherActive === false) {
       return;
     }
-    let content = ' ';
-    if(weather !== null){
+    let content: string = '';
+    if (weather !== null) {
       content = JSON.stringify(weather);
     }
 
-    return (<div className="flex my-2 bg-white max-w-sm rounded overflow-scroll shadow-lg">
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">The Weather</div>
-        <p className="text-gray-700 text-base">
-          {content}
-        </p>
-      </div>
-    </div>);
+    return <WeatherForm content={content} />;
 
   };
   return (
