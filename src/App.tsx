@@ -16,12 +16,12 @@ const App = () => {
       let response: any = null;
       switch (searchMethod) {
         case SearchMethod.ZIPCODE: {
-          response = await axios.get('http://localhost:5000/api/weather/zipcode/' + content);
+          response = await axios.get('https://ts-weather-server.herokuapp.com/api/weather/zipcode/' + content);
           break;
         }
         case SearchMethod.Geographic: {
-         // const reg:RegExp = content.
-         // response = await axios.get('http://localhost:5000/api/weather/geographic_coordinates/' + content);
+          // const reg:RegExp = content.
+          // response = await axios.get('http://localhost:5000/api/weather/geographic_coordinates/' + content);
           break;
         }
       }
