@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/DigiWeather/static/css/main.dfcc4d0f.chunk.css",
+    "main.js": "/DigiWeather/static/js/main.55fde09c.chunk.js",
+    "main.js.map": "/DigiWeather/static/js/main.55fde09c.chunk.js.map",
+    "runtime-main.js": "/DigiWeather/static/js/runtime-main.728b05de.js",
+    "runtime-main.js.map": "/DigiWeather/static/js/runtime-main.728b05de.js.map",
+    "static/js/2.0c683380.chunk.js": "/DigiWeather/static/js/2.0c683380.chunk.js",
+    "static/js/2.0c683380.chunk.js.map": "/DigiWeather/static/js/2.0c683380.chunk.js.map",
+    "index.html": "/DigiWeather/index.html",
+    "precache-manifest.312bbf1acc8141c2fb91dd1b0fb7f4a9.js": "/DigiWeather/precache-manifest.312bbf1acc8141c2fb91dd1b0fb7f4a9.js",
+    "service-worker.js": "/DigiWeather/service-worker.js",
+    "static/css/main.dfcc4d0f.chunk.css.map": "/DigiWeather/static/css/main.dfcc4d0f.chunk.css.map",
+    "static/js/2.0c683380.chunk.js.LICENSE.txt": "/DigiWeather/static/js/2.0c683380.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.728b05de.js",
+    "static/js/2.0c683380.chunk.js",
+    "static/css/main.dfcc4d0f.chunk.css",
+    "static/js/main.55fde09c.chunk.js"
+  ]
+}
