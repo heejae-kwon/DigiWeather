@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c629db6b82d1a303e99e2e9a90536b8d",
+    "revision": "362a917ce92a4550f19aad59f119876d",
     "url": "/DigiWeather/index.html"
   },
   {
-    "revision": "16b07f9de7d441e9ea56",
+    "revision": "6c83c3e46e86cb09a24c",
     "url": "/DigiWeather/static/css/main.dfcc4d0f.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/DigiWeather/static/js/2.0c683380.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "16b07f9de7d441e9ea56",
-    "url": "/DigiWeather/static/js/main.0a9a3dd8.chunk.js"
+    "revision": "6c83c3e46e86cb09a24c",
+    "url": "/DigiWeather/static/js/main.4eb3216a.chunk.js"
   },
   {
     "revision": "c208455dbf6883318f0a",
