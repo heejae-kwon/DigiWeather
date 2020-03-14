@@ -7,7 +7,7 @@ import WeatherForm from './components/WeatherForm';
 const App = () => {
 
   const devUrl = "http://localhost:5000/api/weather/zipcode/";
-  const buildUrl = "http://ts-weather-server.herokuapp.com/api/weather/zipcode/";
+  const buildUrl = "https://ts-weather-server.herokuapp.com/api/weather/zipcode/";
   const [weather, setWeather] = useState(Object);
   const [forecast, setForecast] = useState(Object);
   const [isWeatherActive, setIsWeatherActive] = useState(false);
