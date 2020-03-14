@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/DigiWeather/static/css/main.dfcc4d0f.chunk.css",
-    "main.js": "/DigiWeather/static/js/main.3e0fe6e8.chunk.js",
-    "main.js.map": "/DigiWeather/static/js/main.3e0fe6e8.chunk.js.map",
+    "main.js": "/DigiWeather/static/js/main.0a9a3dd8.chunk.js",
+    "main.js.map": "/DigiWeather/static/js/main.0a9a3dd8.chunk.js.map",
     "runtime-main.js": "/DigiWeather/static/js/runtime-main.728b05de.js",
     "runtime-main.js.map": "/DigiWeather/static/js/runtime-main.728b05de.js.map",
-    "static/js/2.0c683380.chunk.js": "/DigiWeather/static/js/2.0c683380.chunk.js",
-    "static/js/2.0c683380.chunk.js.map": "/DigiWeather/static/js/2.0c683380.chunk.js.map",
+    "static/js/2.ae8e3be0.chunk.js": "/DigiWeather/static/js/2.ae8e3be0.chunk.js",
+    "static/js/2.ae8e3be0.chunk.js.map": "/DigiWeather/static/js/2.ae8e3be0.chunk.js.map",
     "index.html": "/DigiWeather/index.html",
-    "precache-manifest.7796b885df51f0cba8e6a2e85d98c4e0.js": "/DigiWeather/precache-manifest.7796b885df51f0cba8e6a2e85d98c4e0.js",
+    "precache-manifest.ab2fc22b87cfca99433ba9836b736f9d.js": "/DigiWeather/precache-manifest.ab2fc22b87cfca99433ba9836b736f9d.js",
     "service-worker.js": "/DigiWeather/service-worker.js",
     "static/css/main.dfcc4d0f.chunk.css.map": "/DigiWeather/static/css/main.dfcc4d0f.chunk.css.map",
-    "static/js/2.0c683380.chunk.js.LICENSE.txt": "/DigiWeather/static/js/2.0c683380.chunk.js.LICENSE.txt"
+    "static/js/2.ae8e3be0.chunk.js.LICENSE.txt": "/DigiWeather/static/js/2.ae8e3be0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.728b05de.js",
-    "static/js/2.0c683380.chunk.js",
+    "static/js/2.ae8e3be0.chunk.js",
     "static/css/main.dfcc4d0f.chunk.css",
-    "static/js/main.3e0fe6e8.chunk.js"
+    "static/js/main.0a9a3dd8.chunk.js"
   ]
 }
