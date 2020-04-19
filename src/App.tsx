@@ -36,7 +36,7 @@ const App = () => {
           const match = reg.exec(content);
           console.log(match);
           if (match) {
-            response = await axios.get(devUrlGeo + "lat=" + match[1] + "&lon=" + match[2]);
+            response = await axios.get(buildUrlGeo + "lat=" + match[1] + "&lon=" + match[2]);
           }
           break;
         }
