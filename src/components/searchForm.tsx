@@ -10,6 +10,7 @@ export enum SearchMethod {
 export const SearchForm = (props: SearchFormProps) => {
   const [input, setInput] = useState('');
   const [method, setMethod] = useState(SearchMethod.ZIPCODE);
+  const [placeholder, setPlaceholder] = useState("Enter the ZIP code");
   const enterKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (input === '') {
       return;
@@ -19,15 +20,17 @@ export const SearchForm = (props: SearchFormProps) => {
       props.getWeather(input, method);
     }
   }
-  const searchMethodChange = (e: React.FormEvent<HTMLSelectElement>) => {
-    const target = e.currentTarget.value.toString();
+  const searchMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const target: number = parseInt(e.target.value);
     switch (target) {
-      case 'ZIPCODE': {
+      case SearchMethod.ZIPCODE: {
         setMethod(SearchMethod.ZIPCODE);
+        setPlaceholder("Enter the ZIP code");
         break;
       }
-      case 'Geographic': {
+      case SearchMethod.Geographic: {
         setMethod(SearchMethod.Geographic);
+        setPlaceholder("Enter the longitude, latitude");
         break;
       }
       default: {
@@ -36,15 +39,15 @@ export const SearchForm = (props: SearchFormProps) => {
     }
   }
   return (
-    <div className="bg-white my-2">
+    <div className="bg-white my-2 rounded">
       <form className="w-full max-w-sm">
         <div className="flex items-center border-b border-b-2 border-teal-500 py-2">
           <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            onKeyDown={enterKeyDown} onInput={(e: React.FormEvent<HTMLInputElement>) => setInput(e.currentTarget.value)} type="text" placeholder="Enter.." aria-label="Full name" />
-          <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            onKeyDown={enterKeyDown} onInput={(e: React.FormEvent<HTMLInputElement>) => setInput(e.currentTarget.value)} type="text" placeholder={placeholder.toString()} aria-label="Full name" />
+          <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 mx-2 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             onChange={searchMethodChange} id="grid-state" defaultValue={method.toString()}>
-            <option value={SearchMethod.ZIPCODE.toString()}>ZIP code</option>
-            <option value={SearchMethod.Geographic.toString()}>Geographic Coordinates</option>
+            <option value={SearchMethod.ZIPCODE}>ZIP code</option>
+            <option value={SearchMethod.Geographic}>Geographic Coordinates</option>
           </select>
         </div>
       </form>

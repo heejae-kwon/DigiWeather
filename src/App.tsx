@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { SearchForm, SearchMethod } from './components/SearchForm';
 import WeatherForm from './components/WeatherForm';
+import { IWeatherInfo, WeatherInfo } from './components/WeatherInfo';
 
 const App = () => {
 
@@ -37,67 +38,44 @@ const App = () => {
 
   };
   const showWeather = () => {
-    if (isWeatherActive === false || !weather) {
+    if (isWeatherActive === false || !weather || !forecast) {
       return;
     }
-    if (Object.keys(weather).length === 0) {
-      return;
-    }
-
-    return <WeatherForm main={weather.weather[0].main}
-      description={weather.weather[0].description}
-      temp={weather.main.temp}
-      temp_max={weather.main.temp_max}
-      temp_min={weather.main.temp_min}
-      humidity={weather.main.humidity}
-      wind_speed={weather.wind.speed}
-      dt={weather.dt}
-      name={weather.name}
-      icon={weather.weather[0].icon}
-    />
-  };
-  const showForecast = () => {
-    if (isWeatherActive === false || !forecast) {
-      return;
-    }
-    if (Object.keys(forecast).length === 0) {
+    if (Object.keys(weather).length === 0 || Object.keys(forecast).length === 0) {
       return;
     }
 
-    const listOfForecast: Array<any> = forecast.list;
-    const res = listOfForecast.map((fc, index) => {
-      return (<div className="mx-2">
-        <WeatherForm key={index} main={fc.weather[0].main}
-          description={fc.weather[0].description}
-          temp={fc.main.temp}
-          temp_max={fc.main.temp_max}
-          temp_min={fc.main.temp_min}
-          humidity={fc.main.humidity}
-          wind_speed={fc.wind.speed}
-          dt={fc.dt}
-          name={""}
-          icon={fc.weather[0].icon}
-        />
-      </div>);
-    });
-    return (<div className="flex flex-col bg-blue-400 w-screen">
-      <div>
-        <p>
-          3hours forecast
-        </p>
-      </div>
-      <div className="flex flex-row">
-        {res}
-      </div>
-    </div>);
+
+    const listOfForecast: Array<WeatherInfo> = new Array<WeatherInfo>();
+    const fcList: Array<any> = forecast.list;
+    for (let i = 0; i < 8; ++i) {
+      const newWeather = new WeatherInfo();
+      let element = weather;
+      if (i !== 0) {
+        element = fcList[i - 1];
+      }
+      newWeather.main = element.weather[0].main;
+      newWeather.name = element.name;
+      newWeather.description = element.weather[0].description;
+      newWeather.temp = element.main.temp;
+      newWeather.temp_max = element.main.temp_max;
+      newWeather.temp_min = element.main.temp_min;
+      newWeather.humidity = element.main.humidity;
+      newWeather.wind_speed = element.wind.speed;
+      newWeather.dt = element.dt;
+      newWeather.icon = element.weather[0].icon;
+      listOfForecast.push(newWeather);
+    }
+
+    return <WeatherForm weathers={listOfForecast} />
   };
+
 
   return (
     <div className="bg-blue-400 h-screen w-screen">
       <div className="flex flex-col items-center py-4">
         <SearchForm getWeather={getWeather} />
         {showWeather()}
-        {showForecast()}
       </div>
     </div>
   );
