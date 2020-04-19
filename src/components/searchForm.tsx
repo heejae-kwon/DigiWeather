@@ -38,8 +38,8 @@ export const SearchForm = (props: SearchFormProps) => {
         } else {
           //       status.textContent = 'Locating…';
           const success = (position: any) => {
-            const latitude: string = position.coords.latitude;
-            const longitude: string = position.coords.longitude;
+            const latitude: string = parseFloat(position.coords.latitude).toFixed(2).toString();
+            const longitude: string = parseFloat(position.coords.longitude).toFixed(2).toString();
             setInput(latitude + ", " + longitude);
           };
           const error = () => { setInput("Unable to retrieve your location") }

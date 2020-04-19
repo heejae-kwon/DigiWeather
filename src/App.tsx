@@ -3,7 +3,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { SearchForm, SearchMethod } from './components/SearchForm';
 import WeatherForm from './components/WeatherForm';
-import {  WeatherInfo } from './components/WeatherInfo';
+import { WeatherInfo } from './components/WeatherInfo';
+import ReactLoading from 'react-loading';
+
+import Nodejs_logo from './logo/Node.js_logo.svg'
+import React_logo from './logo/React_logo.svg'
+import TypeScript_logo from './logo/TypeScript_logo.svg'
+import DigiPen_logo from './logo/DigiPen_logo.png'
 
 const App = () => {
 
@@ -43,11 +49,18 @@ const App = () => {
 
   };
   const showWeather = () => {
-    if (isWeatherActive === false || !weather || !forecast) {
+    if (isWeatherActive === false)
       return;
-    }
-    if (Object.keys(weather).length === 0 || Object.keys(forecast).length === 0) {
-      return;
+    if (!weather ||
+      !forecast ||
+      Object.keys(weather).length === 0 ||
+      Object.keys(forecast).length === 0) {
+
+      return (
+        <div className="mt-8">
+          <ReactLoading type={"spin"} color={"#ffffff"} height={200} width={200} />
+        </div>
+      );
     }
 
     const listOfForecast: Array<WeatherInfo> = new Array<WeatherInfo>();
@@ -74,13 +87,26 @@ const App = () => {
     return <WeatherForm weathers={listOfForecast} />
   };
 
+  const renderFooter = () => {
+
+    return (
+      <div className="flex flex-row w-full fixed text-center inset-x-0 bottom-0 bg-blue-600 h-32 justify-around">
+        <img alt="React_image" src={React_logo} height={180} width={180}/>
+        <img className="my-2" alt="Nodejs_image" src={Nodejs_logo} height={180} width={320}/>
+        <img alt="TypeScript_image" src={TypeScript_logo} height={180} width={320}/>
+        <img alt="Digipen_image" src={DigiPen_logo} height={180} width={320}/>
+      </div>
+    );
+  };
+
 
   return (
-    <div className="bg-blue-400 h-screen w-screen">
+    <div className="bg-blue-500 h-screen w-screen">
       <div className="flex flex-col items-center py-4">
         <SearchForm getWeather={getWeather} />
         {showWeather()}
       </div>
+      {renderFooter()}
     </div>
   );
 }
