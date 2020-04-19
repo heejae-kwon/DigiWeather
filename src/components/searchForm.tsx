@@ -21,7 +21,8 @@ export const SearchForm = (props: SearchFormProps) => {
     }
   }
   const searchMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const target: number = parseInt(e.target.value);
+    const target: SearchMethod = parseInt(e.currentTarget.value);
+    setInput("");
     switch (target) {
       case SearchMethod.ZIPCODE: {
         setMethod(SearchMethod.ZIPCODE);
@@ -30,7 +31,20 @@ export const SearchForm = (props: SearchFormProps) => {
       }
       case SearchMethod.Geographic: {
         setMethod(SearchMethod.Geographic);
-        setPlaceholder("Enter the longitude, latitude");
+        setPlaceholder("Latitude, Longitude");
+
+        if (!navigator.geolocation) {
+          setInput('Geolocation is not supported by your browser');
+        } else {
+          //       status.textContent = 'Locating…';
+          const success = (position: any) => {
+            const latitude: string = position.coords.latitude;
+            const longitude: string = position.coords.longitude;
+            setInput(latitude + ", " + longitude);
+          };
+          const error = () => { setInput("Unable to retrieve your location") }
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
         break;
       }
       default: {
@@ -43,7 +57,7 @@ export const SearchForm = (props: SearchFormProps) => {
       <form className="w-full max-w-sm">
         <div className="flex items-center border-b border-b-2 border-teal-500 py-2">
           <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            onKeyDown={enterKeyDown} onInput={(e: React.FormEvent<HTMLInputElement>) => setInput(e.currentTarget.value)} type="text" placeholder={placeholder.toString()} aria-label="Full name" />
+           defaultValue={input} onKeyDown={enterKeyDown} onInput={(e: React.FormEvent<HTMLInputElement>) => setInput(e.currentTarget.value)} type="text" placeholder={placeholder.toString()} aria-label="Full name" />
           <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 mx-2 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             onChange={searchMethodChange} id="grid-state" defaultValue={method.toString()}>
             <option value={SearchMethod.ZIPCODE}>ZIP code</option>

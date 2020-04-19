@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { SearchForm, SearchMethod } from './components/SearchForm';
 import WeatherForm from './components/WeatherForm';
-import { IWeatherInfo, WeatherInfo } from './components/WeatherInfo';
+import {  WeatherInfo } from './components/WeatherInfo';
 
 const App = () => {
 
   const devUrl = "http://localhost:5000/api/weather/zipcode/";
   const buildUrl = "https://ts-weather-server.herokuapp.com/api/weather/zipcode/";
+  const buildUrlGeo = "https://ts-weather-server.herokuapp.com/api/weather/geographic_coordinates?";
+  const devUrlGeo = "http://localhost:5000/api/weather/geographic_coordinates?";
   const [weather, setWeather] = useState(Object);
   const [forecast, setForecast] = useState(Object);
   const [isWeatherActive, setIsWeatherActive] = useState(false);
@@ -21,12 +23,15 @@ const App = () => {
       switch (searchMethod) {
         case SearchMethod.ZIPCODE: {
           response = await axios.get(buildUrl + content);
-
           break;
         }
         case SearchMethod.Geographic: {
-          // const reg:RegExp = content.
-          // response = await axios.get('http://localhost:5000/api/weather/geographic_coordinates/' + content);
+          const reg: RegExp = /(^[-+]?(?:[1-8]?\d(?:\.\d+)?|90(?:\.0+)?)),\s*([-+]?(?:180(?:\.0+)?|(?:(?:1[0-7]\d)|(?:[1-9]?\d))(?:\.\d+)?))$/;
+          const match = reg.exec(content);
+          console.log(match);
+          if (match) {
+            response = await axios.get(devUrlGeo + "lat=" + match[1] + "&lon=" + match[2]);
+          }
           break;
         }
       }
@@ -44,7 +49,6 @@ const App = () => {
     if (Object.keys(weather).length === 0 || Object.keys(forecast).length === 0) {
       return;
     }
-
 
     const listOfForecast: Array<WeatherInfo> = new Array<WeatherInfo>();
     const fcList: Array<any> = forecast.list;
